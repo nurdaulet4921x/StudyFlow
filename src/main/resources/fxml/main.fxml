@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.studyflow.controllers.MainController"
+      spacing="0"
+      style="-fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);">
+
+    <!-- Заголовок приложения -->
+    <HBox spacing="15" alignment="CENTER_LEFT" 
+          style="-fx-background-color: rgba(255, 255, 255, 0.1); -fx-padding: 15;">
+        <Label text="📚" style="-fx-font-size: 28px;"/>
+        <Label text="StudyFlow" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="welcomeLabel" text="Добро пожаловать!" 
+               style="-fx-text-fill: white; -fx-font-size: 16px;"/>
+    </HBox>
+
+    <!-- Основное содержимое -->
+    <HBox spacing="0" VBox.vgrow="ALWAYS">
+        
+        <!-- Боковая панель навигации -->
+        <VBox spacing="10" style="-fx-background-color: rgba(255, 255, 255, 0.95); -fx-padding: 20; -fx-min-width: 220;">
+            <Label text="Навигация" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+            <Separator/>
+            
+            <Button text="📊 Панель управления" 
+                    onAction="#handleDashboardButton"
+                    style="-fx-background-color: transparent; -fx-text-fill: #555; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-padding: 10;">
+                <graphic>
+                    <Label text="🏠" style="-fx-font-size: 16px;"/>
+                </graphic>
+            </Button>
+            
+            <Button text="📅 Расписание" 
+                    onAction="#handleScheduleButton"
+                    style="-fx-background-color: transparent; -fx-text-fill: #555; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-padding: 10;">
+                <graphic>
+                    <Label text="📅" style="-fx-font-size: 16px;"/>
+                </graphic>
+            </Button>
+            
+            <Button text="✅ Задачи" 
+                    onAction="#handleTasksButton"
+                    style="-fx-background-color: transparent; -fx-text-fill: #555; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-padding: 10;">
+                <graphic>
+                    <Label text="✅" style="-fx-font-size: 16px;"/>
+                </graphic>
+            </Button>
+            
+            <Button text="📝 Заметки" 
+                    onAction="#handleNotesButton"
+                    style="-fx-background-color: transparent; -fx-text-fill: #555; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-padding: 10;">
+                <graphic>
+                    <Label text="📝" style="-fx-font-size: 16px;"/>
+                </graphic>
+            </Button>
+            
+            <Separator/>
+            <Label text="Активные предметы" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <Label text="• ООП и Java" style="-fx-text-fill: #667eea;"/>
+            <Label text="• Базы данных" style="-fx-text-fill: #764ba2;"/>
+            <Label text="• Алгоритмы" style="-fx-text-fill: #f093fb;"/>
+        </VBox>
+
+        <!-- Основная рабочая область -->
+        <VBox fx:id="mainContent" spacing="20" HBox.hgrow="ALWAYS" 
+              style="-fx-background-color: #f7fafc; -fx-padding: 30;">
+            
+            <Label text="Панель управления" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2d3748;"/>
+            
+            <!-- Статистика -->
+            <HBox spacing="20">
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
+                      spacing="5">
+                    <Label text="Активные задачи" style="-fx-text-fill: #718096; -fx-font-size: 14px;"/>
+                    <Label text="12" style="-fx-text-fill: #667eea; -fx-font-size: 36px; -fx-font-weight: bold;"/>
+                </VBox>
+                
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
+                      spacing="5">
+                    <Label text="Ближайшие дедлайны" style="-fx-text-fill: #718096; -fx-font-size: 14px;"/>
+                    <Label text="3" style="-fx-text-fill: #ed8936; -fx-font-size: 36px; -fx-font-weight: bold;"/>
+                </VBox>
+                
+                <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
+                      spacing="5">
+                    <Label text="Завершено" style="-fx-text-fill: #718096; -fx-font-size: 14px;"/>
+                    <Label text="8" style="-fx-text-fill: #38a169; -fx-font-size: 36px; -fx-font-weight: bold;"/>
+                </VBox>
+            </HBox>
+
+            <!-- Последние задачи -->
+            <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);" 
+                  spacing="15">
+                <Label text="Последние задачи" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <TableView style="-fx-background-color: transparent;">
+                    <columns>
+                        <TableColumn text="Задача" prefWidth="300"/>
+                        <TableColumn text="Предмет" prefWidth="150"/>
+                        <TableColumn text="Срок" prefWidth="150"/>
+                        <TableColumn text="Статус" prefWidth="100"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Загрузка задач..."/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+            
+        </VBox>
+    </HBox>
+
+    <!-- Подвал -->
+    <HBox spacing="10" alignment="CENTER" 
+          style="-fx-background-color: rgba(255, 255, 255, 0.1); -fx-padding: 10;">
+        <Label text="© 2024 StudyFlow | Учебный проект по ООП" 
+               style="-fx-text-fill: white; -fx-font-size: 12px;"/>
+    </HBox>
+
+</VBox>
